@@ -12,7 +12,7 @@ export class StudentService {
   ) {}
 
   async getStudent(id: string): Promise<Student> {
-    return await this.studentRepository.findOneBy({ id });
+    return await this.studentRepository.findOne({ id });
   }
 
   async getStudents(): Promise<Student[]> {
@@ -31,5 +31,11 @@ export class StudentService {
     });
 
     return await this.studentRepository.save(student);
+  }
+
+  async getManyStudents(studentsIds: string[]): Promise<Student[]> {
+    return await this.studentRepository.find({
+      where: { id: { $in: studentsIds } },
+    });
   }
 }

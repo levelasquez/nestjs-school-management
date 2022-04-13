@@ -13,7 +13,7 @@ export class LessonService {
   ) {}
 
   async getLesson(id: string): Promise<Lesson> {
-    return await this.lessonRepository.findOneBy({ id });
+    return await this.lessonRepository.findOne({ id });
   }
 
   async getLessons(): Promise<Lesson[]> {
@@ -39,7 +39,7 @@ export class LessonService {
   ): Promise<Lesson> {
     const { lessonId, studentsIds } = assignStudentsToLesson;
 
-    const lesson = await this.lessonRepository.findOneBy({ id: lessonId });
+    const lesson = await this.lessonRepository.findOne({ id: lessonId });
 
     lesson.students = [...lesson.students, ...studentsIds];
 
