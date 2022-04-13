@@ -7,6 +7,11 @@ import { StudentType } from './student.type';
 export class StudentResolver {
   constructor(private studentService: StudentService) {}
 
+  @Query(() => StudentType)
+  student(@Args('id') id: string) {
+    return this.studentService.getStudent(id);
+  }
+
   @Query(() => [StudentType])
   students() {
     return this.studentService.getStudents();
